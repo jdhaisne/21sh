@@ -12,6 +12,11 @@
 
 #include "21sh.h"
 
+int ft_putchar_modif(int c)
+{
+ft_putchar(c);
+return (0);
+}
 t_list	*double_tab_to_list(char **tab)
 {
 	int		i;
@@ -35,14 +40,20 @@ t_list	*double_tab_to_list(char **tab)
 
 int		main(int argc, char **argv, char **env)
 {
-	t_list *env_l;
+	t_list	*env_l;
+	char	*tmp;
 
 	env_l = double_tab_to_list(env);
 	while(1)
 	{
 	if (tgetent(NULL, ft_envar("TERM", env_l)) == -1)
 		return (-1);
-	ft_putnbr(tgetnum("co"));
+
+	tmp = tgetstr("cm", NULL);
+//	ft_putstr(tmp);
+	tputs(tgoto(tmp, 50, 50), 1, ft_putchar_modif);
+//	ft_putchar(' ');
+//	ft_putnbr(tgetnum("co"));
 	ft_putchar('\n');
 	}
 	return (0);
