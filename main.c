@@ -6,7 +6,7 @@
 /*   By: jdhaisne <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/20 12:55:04 by jdhaisne          #+#    #+#             */
-/*   Updated: 2016/04/20 13:52:05 by jdhaisne         ###   ########.fr       */
+/*   Updated: 2016/04/22 16:33:40 by jdhaisne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,9 @@ int		main(int argc, char **argv, char **env)
 	t_list	*env_l;
 	char	*tmp;
 
-	env_l = double_tab_to_list(env);
 	while(1)
 	{
-	if (tgetent(NULL, ft_envar("TERM", env_l)) == -1)
+	if (tgetent(NULL, getenv("TERM")) == -1)
 		return (-1);
 
 	tmp = tgetstr("cm", NULL);
